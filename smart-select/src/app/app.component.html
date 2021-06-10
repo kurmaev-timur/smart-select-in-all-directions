@@ -38,5 +38,17 @@
       <mat-option *ngFor="let group of groupsList" [value]="group">{{group}}</mat-option>
     </mat-select>
   </mat-form-field>
-  
+
+  <mat-form-field appearance="fill">
+    <mat-label>Year of Study</mat-label>
+    <mat-select [formControl]="years" multiple (selectionChange)="selectYearItem($event)">
+      <mat-select-trigger>
+        {{years.value ? years.value[0] : ''}}
+        <span *ngIf="years.value?.length > 1" class="example-additional-selection">
+          (+{{years.value.length - 1}} {{years.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let year of yearsList" [value]="year">{{year}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

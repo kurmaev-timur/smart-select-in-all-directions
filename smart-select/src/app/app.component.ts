@@ -61,6 +61,8 @@ export class AppComponent {
   groups = new FormControl();
   groupsList: any[] = [];
 
+  years = new FormControl();
+  yearsList: any[] = [];
 
 
   ngOnInit(){
@@ -80,6 +82,7 @@ export class AppComponent {
     this.studentsList = [...new Set(this.studentsList)];
     this.subjectsList = [...new Set(this.subjectsList)];
     this.groupsList = [...new Set(this.groupsList)];
+    this.yearsList = [...new Set(this.yearsList)]; 
   }
 
   selectAllValues(){
@@ -93,21 +96,24 @@ export class AppComponent {
         switch(item) { 
           case "students": { 
               if(data.student == element) {
-                console.log(data.item)
                 this.srcObject.push(data)
               }
              break; 
           } 
           case "subjects": { 
             if(data.subject == element) {
-              console.log(data.item)
               this.srcObject.push(data)
             }
              break; 
           } 
           case "groups": {
             if(data.group == element) {
-              console.log(data.item)
+              this.srcObject.push(data)
+            }
+             break;    
+          }
+          case "years": {
+            if(data.year == element) {
               this.srcObject.push(data)
             }
              break;    
@@ -126,7 +132,8 @@ export class AppComponent {
       this.flexibleSelect(event.value , 'students');
       console.log(this.srcObject)
       this.subjectsList = this.srcObject.map(s => s.subject)
-      this.groupsList= this.srcObject.map(s => s.group)
+      this.groupsList = this.srcObject.map(s => s.group)
+      this.yearsList = this.srcObject.map(s => s.year) 
     }
     this.removeDuplicatesFromLists();
   }
@@ -140,6 +147,7 @@ export class AppComponent {
       this.flexibleSelect(event.value,  'subjects');
       this.studentsList = this.srcObject.map(s => s.student)
       this.groupsList= this.srcObject.map(s => s.group)
+      this.yearsList = this.srcObject.map(s => s.year) 
     }
     this.removeDuplicatesFromLists();
 
@@ -153,6 +161,20 @@ export class AppComponent {
       this.flexibleSelect(event.value, 'groups');
       this.subjectsList = this.srcObject.map(s => s.subject)
       this.studentsList = this.srcObject.map(s => s.student)
+      this.yearsList = this.srcObject.map(s => s.year) 
+    }
+    this.removeDuplicatesFromLists();
+  }
+
+  selectYearItem(event : MatSelectChange){
+    if (event.value == "") {
+      this.fillLists();
+    }
+    else{
+      this.flexibleSelect(event.value, 'years');
+      this.subjectsList = this.srcObject.map(s => s.subject)
+      this.studentsList = this.srcObject.map(s => s.student)
+      this.yearsList = this.srcObject.map(s => s.year) 
     }
     this.removeDuplicatesFromLists();
   }
