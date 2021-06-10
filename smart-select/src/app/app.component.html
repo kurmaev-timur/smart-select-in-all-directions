@@ -1,0 +1,42 @@
+<div class="mat-select-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Students</mat-label>
+    <mat-select [formControl]="students" multiple>
+      <mat-select-trigger>
+        {{students.value ? students.value[0] : ''}}
+        <span *ngIf="students.value?.length > 1" class="example-additional-selection">
+          (+{{students.value.length - 1}} {{students.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let student of studentsList" [value]="student">{{student}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Subjects</mat-label>
+    <mat-select [formControl]="subjects" multiple>
+      <mat-select-trigger>
+        {{subjects.value ? subjects.value[0] : ''}}
+        <span *ngIf="subjects.value?.length > 1" class="example-additional-selection">
+          (+{{subjects.value.length - 1}} {{subjects.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let subject of subjectsList" [value]="subject">{{subject}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Groups</mat-label>
+    <mat-select [formControl]="groups" multiple>
+      <mat-select-trigger>
+        {{groups.value ? groups.value[0] : ''}}
+        <span *ngIf="groups.value?.length > 1" class="example-additional-selection">
+          (+{{groups.value.length - 1}} {{groups.value?.length === 2 ? 'other' : 'others'}})
+        </span>
+      </mat-select-trigger>
+      <mat-option *ngFor="let group of groupsList" [value]="group">{{group}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+</div>
